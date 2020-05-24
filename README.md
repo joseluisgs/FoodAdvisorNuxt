@@ -1,6 +1,6 @@
 # FoodAdvisorNuxt
 
-> Web de recomendación de restaurantes con NuxtJS y firebase
+> Web de recomendación de restaurantes con NuxtJS y Firebase
 
 ## Build Setup
 
