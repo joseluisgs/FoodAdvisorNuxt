@@ -39,7 +39,7 @@
         {{ description }}
         <!-- Al ir al hiperenlñace vamos a la pagina que se llama como slug -->
         <!-- <a v-bind:href="slug">More info</a>. -->
-        <a :href="category +'/'+ slug">more info</a>.. <!-- Para cargar dinamicamente debemos tener una página que se llame _slug porque así lo estamos diciendo -->
+        <a :href="category +'/'+ slug">more info</a>. <!-- Para cargar dinamicamente debemos tener una página que se llame _slug porque así lo estamos diciendo -->
       </div>
     </div>
   </div>
