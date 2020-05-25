@@ -8,12 +8,17 @@
         Enter
       </button>
     </section>
+    <RestaurantCard />
   </div>
 </template>
 
 <script>
+import RestaurantCard from '../components/RestaurantCard';
 export default {
-  components: {}
+  // Retorna una instancia con todos los componente que vamos incorprando
+  components: {
+    RestaurantCard
+  }
 };
 </script>
 
