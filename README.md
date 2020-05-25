@@ -31,6 +31,8 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 
 * [GitHub](https://github.com/joseluisgs) ![GitHub](https://img.shields.io/github/followers/joseluisgs?style=social)
 
+Basado en el curso de OpenWebinars de [NuxtJS](https://openwebinars.net/cursos/nuxtjs/)
+
 ## Licencia
 
 Este proyecto esta licenciado bajo licencia **MIT**, si desea saber más, visite el fichero [LICENSE](https://github.com/joseluisgs/FoodAdvisorNuxt/blob/master/LICENSE)

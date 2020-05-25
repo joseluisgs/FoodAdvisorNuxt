@@ -64,6 +64,10 @@ export default {
     slug: {
       type: String,
       default: ''
+    },
+    likes: {
+      type: Number,
+      default: 0
     }
   },
   // Objetos datos de nuestro componente, con datos propios y que no hemos recibido a traves de propiedades. Padre-Hijo
@@ -71,7 +75,7 @@ export default {
     return {
       // name: 'Bar Paco',
       // description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus neciaculis mauris.',
-      likes: 0
+      // likes: 0
       // category: 'burger',
       // slug: 'restaurant-name' // Comos e llamará el parámetro de la página
     };
@@ -79,9 +83,11 @@ export default {
   // Objeto funciones de nuestro componente
   methods: {
     sumLikes () {
+      // Emitimos un evento. el evento es como podemos comunicar un hijo con su padre. Capturará ese evento y lo procesará
+      this.$emit('onLikeButton'); // Se le puede pasar parametros, this.$emit('onLikeButton', parametros);
       // this.likes = this.likes + 1
-      this.likes++;
-      console.log(this.likes);
+      // this.likes++;
+      console.log(`Desde RestaurantCard. Likes: ${this.likes}`);
     }
   }
 
