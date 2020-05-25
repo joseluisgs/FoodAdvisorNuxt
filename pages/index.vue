@@ -7,9 +7,9 @@
       Son muy usados por ejemplo, para crear un tipo de botón, con unos estilos determinados y queramos por ejemplo en un momento dato, renderizar solo un texto, como por ejemplo,
       "Registrate" y en otras ocasiones, un texto y un icono, y en otras un texto un icono y una imagen.
       Si no usaramos los slots, deberiamos hacer estas validaciones con las propiedades y hacer un renderizado condicional con directivas v-if. -->
-    <Hero>
-      <Banner slot="header" style="width: 790px" />
-      <Slogan slot="header" style="width: 790px" />
+    <Hero @onChangeBanner="changeBanner">
+      <Banner v-if="banner" slot="header" style="width: 790px" />
+      <Slogan v-else slot="header" style="width: 790px" />
     </Hero>
     <div class="container">
       <section class="section">
@@ -46,7 +46,8 @@ export default {
   // Mis datos
   data () {
     return {
-      likes: 0
+      likes: 0,
+      banner: false // Para mostrar el banner. Lo recuperamos a través de un evento
     };
   },
   // Metodos de mi objeto
@@ -54,6 +55,10 @@ export default {
     sumLikes () {
       this.likes++;
       console.log(`Desde Index. Likes: ${this.likes}`);
+    },
+
+    changeBanner () {
+      this.banner = !this.banner;
     }
   }
 };
