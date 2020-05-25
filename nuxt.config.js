@@ -40,6 +40,7 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/bulma'
   ],
   /*
   ** Build configuration
@@ -51,4 +52,4 @@ export default {
     extend (config, ctx) {
     }
   }
-}
+};
