@@ -1,9 +1,18 @@
 <template>
   <div class="container">
     <section class="section">
-      <h1 class="title is-1">
+      <!--  <h1 class="title is-1">
         FoodAdvisor
-      </h1>
+      </h1> -->
+      <!-- Los Slots nos perminten inyectar código HTML dentro de un componente o podrer injectar un componente dentro de otro componente sin tener que importarlo desde el componente hijo.
+      Son muy usados por ejemplo, para crear un tipo de botón, con unos estilos determinados y queramos por ejemplo en un momento dato, renderizar solo un texto, como por ejemplo,
+      "Registrate" y en otras ocasiones, un texto y un icono, y en otras un texto un icono y una imagen.
+      Si no usaramos los slots, deberiamos hacer estas validaciones con las propiedades y hacer un renderizado condicional con directivas v-if. -->
+      <Hero>
+        <div slot="header">
+          <p>Soy el slot desde el padre index.vue</p>
+        </div>
+      </Hero>
       <!-- <RestaurantCard /> Sin propiedades o con datos por defecto-->
       <!-- Con propiedades o datos pasados de Padre a Hijo. Inicamos el objeto -->
       <!-- La comunicación Hijo padre a través de eventos el padre cada vez que se hace click en el hijo a través del evento de comunicación que es onLikeButton, en el hijo se emite ($emit) -->
@@ -20,11 +29,13 @@
 </template>
 
 <script>
-import RestaurantCard from '../components/RestaurantCard';
+import RestaurantCard from '@/components/RestaurantCard';
+import Hero from '@/components/Hero';
 export default {
   // Retorna una instancia con todos los componente que vamos incorprando
   components: {
-    RestaurantCard
+    RestaurantCard,
+    Hero
   },
   // Mis datos
   data () {
