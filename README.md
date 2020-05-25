@@ -1,10 +1,14 @@
 # FoodAdvisorNuxt
 
+<<<<<<< HEAD
 Web de recomendación de restaurantes con NuxtJS y Firebase
 
 ### Acerca de
 
 Este proyecto tiene como objetivo crear una web app con NuxtJS, Firebase y apoyándose en Bulma como CSS
+=======
+> Web de recomendación de restaurantes con NuxtJS y Firebase
+>>>>>>> master
 
 ## Build Setup
 
