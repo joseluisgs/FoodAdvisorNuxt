@@ -46,7 +46,7 @@ export default {
   // Es decir, devuelve un objeto de funciones
   methods: {
     pulsado () {
-      console.log('Botón pulsado');
+      console.log(`Botón pulsado: ${this.name}`);
     }
   }
 };
