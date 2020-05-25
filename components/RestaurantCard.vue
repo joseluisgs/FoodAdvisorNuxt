@@ -46,14 +46,34 @@
 <script>
 // La lógica de nuestro ccomponente (controlador)
 export default {
-  // Objetos datos de nuestro componente
+  /* Las propiedades con variables que podemos inyectar a nuestros componentes. De un Padre a un hijo
+  De manera que el componente sea independiente del modelo de datos. */
+  props: {
+    name: {
+      type: String,
+      default: ''
+    },
+    description: {
+      type: String,
+      default: ''
+    },
+    category: {
+      type: String,
+      default: ''
+    },
+    slug: {
+      type: String,
+      default: ''
+    }
+  },
+  // Objetos datos de nuestro componente, con datos propios y que no hemos recibido a traves de propiedades. Padre-Hijo
   data () {
     return {
-      name: 'Bar Paco',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus neciaculis mauris.',
-      likes: 0,
-      category: 'burger',
-      slug: 'restaurant-name' // Comos e llamará el parámetro de la página
+      // name: 'Bar Paco',
+      // description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus neciaculis mauris.',
+      likes: 0
+      // category: 'burger',
+      // slug: 'restaurant-name' // Comos e llamará el parámetro de la página
     };
   },
   // Objeto funciones de nuestro componente
