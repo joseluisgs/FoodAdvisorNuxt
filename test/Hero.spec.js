@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils';
 import Hero from '@/components/Hero';
 
+// suite 
 describe('HeroComponent', () => {
   const SLOT_CONTENT = '<p>Titulo de pruebas</p>';
   const wrapper = mount(Hero, {

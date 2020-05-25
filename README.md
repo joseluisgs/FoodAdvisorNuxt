@@ -1,6 +1,6 @@
 # FoodAdvisorNuxt
 
-Web de recomendación de restaurantes con NuxtJS y Firebase
+Web de recomendación de restaurantes con NuxtJS y Firebase y Bulma
 
 ### Acerca de
 
