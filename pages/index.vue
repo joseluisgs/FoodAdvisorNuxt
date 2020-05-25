@@ -8,9 +8,8 @@
       "Registrate" y en otras ocasiones, un texto y un icono, y en otras un texto un icono y una imagen.
       Si no usaramos los slots, deberiamos hacer estas validaciones con las propiedades y hacer un renderizado condicional con directivas v-if. -->
     <Hero>
-      <div slot="header">
-        <p>Soy el slot desde el padre index.vue</p>
-      </div>
+      <Banner slot="header" style="width: 790px" />
+      <Slogan slot="header" style="width: 790px" />
     </Hero>
     <div class="container">
       <section class="section">
@@ -33,11 +32,16 @@
 <script>
 import RestaurantCard from '@/components/RestaurantCard';
 import Hero from '@/components/Hero';
+import Banner from '@/components/Banner';
+import Slogan from '@/components/Slogan';
+
 export default {
   // Retorna una instancia con todos los componente que vamos incorprando
   components: {
     RestaurantCard,
-    Hero
+    Hero,
+    Banner,
+    Slogan
   },
   // Mis datos
   data () {
