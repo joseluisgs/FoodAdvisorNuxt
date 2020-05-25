@@ -37,10 +37,11 @@ export default {
     '@nuxtjs/eslint-module'
   ],
   /*
-  ** Nuxt.js modules
+  ** Nuxt.js modules. Los que debes importar.
   */
   modules: [
-    '@nuxtjs/bulma'
+    '@nuxtjs/bulma',
+    '@nuxtjs/axios'
   ],
   /*
   ** Build configuration

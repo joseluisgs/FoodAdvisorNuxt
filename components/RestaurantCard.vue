@@ -4,7 +4,7 @@
     <div class="card-image">
       <figure class="image">
         <!-- La @ como ~son alias para acceder a un directorio -->
-        <img src="~/assets/images/restaurant.jpg" alt="Pizza Restaurant">
+        <img :src="image" alt="Pizza Restaurant">
       </figure>
     </div>
     <div class="card-content">
@@ -68,6 +68,10 @@ export default {
     likes: {
       type: Number,
       default: 0
+    },
+    image: {
+      type: String,
+      default: ''
     }
   },
   // Objetos datos de nuestro componente, con datos propios y que no hemos recibido a traves de propiedades. Padre-Hijo

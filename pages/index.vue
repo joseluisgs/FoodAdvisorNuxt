@@ -31,6 +31,7 @@
           :name="restaurant.name"
           :description="restaurant.description"
           :category="restaurant.category"
+          :image="restaurant.image"
           :slug="restaurant.slug"
           :likes="restaurant.likes"
           @onLikeButton="sumLikes(index)"
@@ -45,6 +46,7 @@ import RestaurantCard from '@/components/RestaurantCard';
 import Hero from '@/components/Hero';
 import Banner from '@/components/Banner';
 import Slogan from '@/components/Slogan';
+import api from '@/services/api'; // Nuestra API
 
 export default {
   // Retorna una instancia con todos los componente que vamos incorprando
@@ -59,7 +61,7 @@ export default {
     return {
       likes: 0,
       banner: false, // Para mostrar el banner. Lo recuperamos a través de un evento
-      // Array de restaurantes estatico
+      // Array de restaurantes estatico. Ya no es necesario al hacer el GET
       restaurants: [
         {
           name: 'Restaurant La Cúpula',
@@ -84,6 +86,14 @@ export default {
         }
       ]
     };
+  },
+  // Una de las mejores formas o momentos para consumir una api es en en el estado created del ciclo de vida del componente.
+  // Obtenemos los restaurantes y los asociados a la variable
+  async created () {
+    const response = await api.getRestaurants();
+    if (response.status === 200) {
+      this.restaurants = response.data;
+    }
   },
   // Metodos de mi objeto
   methods: {
