@@ -59,6 +59,18 @@ export default {
     Banner,
     Slogan
   },
+  /* El método asyncData realiza la petición en la parte del servidor, lo que ayuda a mejorar el posicionamiento web (SEO) y libera de carga al cliente.
+    De esta forma nos ahorramos hacerlo en el lado del cliente, como hacemos con created aser una pagina de renderizado en el servidor.
+    Es decir lo podemos hacer así la petición porque es una página SSR, en ve de desar la página y que el cliente se desacrgue los datos.
+    Lo hace els ervidor y renderiza la página con los datos ya */
+  async asyncData () {
+    try {
+      const { data } = await api.getRestaurants();
+      return { restaurants: data };
+    } catch {
+      return { restaurants: [] };
+    }
+  },
   // Mis datos
   data () {
     return {
@@ -70,12 +82,12 @@ export default {
   },
   // Una de las mejores formas o momentos para consumir una api es en en el estado created del ciclo de vida del componente.
   // Obtenemos los restaurantes y los asociados a la variable
-  async created () {
+  /* async created () {
     const response = await api.getRestaurants();
     if (response.status === 200) {
       this.restaurants = response.data;
     }
-  },
+  }, */
   // Metodos de mi objeto
   methods: {
     // Cuneta los likes e index es elemento de la lista
