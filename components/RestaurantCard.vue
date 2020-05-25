@@ -36,7 +36,7 @@
         {{ description }}
         <!-- Al ir al hiperenlñace vamos a la pagina que se llama como slug -->
         <!-- <a v-bind:href="slug">More info</a>. -->
-        <a :href="slug">More info</a>.
+        <a :href="slug">More info</a>. <!-- Para cargar dinamicamente debemos tener una página que se llame _slug porque así lo estamos diciendo -->
       </div>
     </div>
   </div>
@@ -52,7 +52,7 @@ export default {
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus neciaculis mauris.',
       likes: 0,
       category: 'burger',
-      slug: 'restaurant-name'
+      slug: 'restaurant-name' // Comos e llamará el parámetro de la página
     };
   },
   // Objeto funciones de nuestro componente
