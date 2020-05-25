@@ -3,6 +3,7 @@
   <div class="card" style="width:400px;">
     <div class="card-image">
       <figure class="image">
+        <!-- La @ como ~son alias para acceder a un directorio -->
         <img src="~/assets/images/restaurant.jpg" alt="Pizza Restaurant">
       </figure>
     </div>
