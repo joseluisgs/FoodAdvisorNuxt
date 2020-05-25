@@ -81,4 +81,16 @@ api.putSumRestaurantLikes = (payload) => {
   return apiPut(url, payload.data);
 };
 
+// GET de restarurantes por Categoría, podría haber pasado payload, y hacer el const
+api.getRestaurantsByCategory = ({ category }) => {
+  // const category = payload.category
+  return apiGet('restaurants?category=' + category);
+};
+
+// GET de un restaurante dado su slung. Podría usar Payaload
+api.getOneRestaurant = ({ slug }) => {
+  // const slug= payload.slug;
+  return apiGet('restaurants?slug=' + slug);
+};
+
 export default api;

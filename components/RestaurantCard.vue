@@ -17,8 +17,10 @@
           <div class="columns">
             <div class="column">
               <!-- Enlazamos la categoria -->
-              <span class="tag">
-                {{ category }}
+              <span class="is-category tag">
+                <a :href="category">
+                  {{ category }}
+                </a>
               </span>
             </div>
             <div class="column has-text-right">
@@ -37,7 +39,7 @@
         {{ description }}
         <!-- Al ir al hiperenlñace vamos a la pagina que se llama como slug -->
         <!-- <a v-bind:href="slug">More info</a>. -->
-        <a :href="slug">More info</a>. <!-- Para cargar dinamicamente debemos tener una página que se llame _slug porque así lo estamos diciendo -->
+        <a :href="category +'/'+ slug">more info</a>.. <!-- Para cargar dinamicamente debemos tener una página que se llame _slug porque así lo estamos diciendo -->
       </div>
     </div>
   </div>
