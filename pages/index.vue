@@ -16,13 +16,24 @@
         <!-- <RestaurantCard /> Sin propiedades o con datos por defecto-->
         <!-- Con propiedades o datos pasados de Padre a Hijo. Inicamos el objeto -->
         <!-- La comunicación Hijo padre a través de eventos el padre cada vez que se hace click en el hijo a través del evento de comunicación que es onLikeButton, en el hijo se emite ($emit) -->
-        <RestaurantCard
+        <!-- <RestaurantCard
           name="Bar Paco"
           description="Descripción del restaurante."
           category="burger"
           slug="bar-paco"
           :likes="likes"
           @onLikeButton="sumLikes"
+        /> -->
+        <!-- Renderizamos la lista de restaurantes -->
+        <RestaurantCard
+          v-for="(restaurant, index) in restaurants"
+          :key="index"
+          :name="restaurant.name"
+          :description="restaurant.description"
+          :category="restaurant.category"
+          :slug="restaurant.slug"
+          :likes="restaurant.likes"
+          @onLikeButton="sumLikes(index)"
         />
       </section>
     </div>
@@ -47,18 +58,43 @@ export default {
   data () {
     return {
       likes: 0,
-      banner: false // Para mostrar el banner. Lo recuperamos a través de un evento
+      banner: false, // Para mostrar el banner. Lo recuperamos a través de un evento
+      // Array de restaurantes estatico
+      restaurants: [
+        {
+          name: 'Restaurant La Cúpula',
+          description: 'Platos mediterráneos y coches antiguos',
+          slug: 'la-cupula',
+          category: 'Mediterráneos',
+          likes: 0
+        },
+        {
+          name: 'Restaurant Singular',
+          description: 'Brunch, desayunos y comidas con variada carta mediterránea en un luminoso café de moderno diseño minimalista.',
+          slug: 'Singular',
+          category: 'Brunch',
+          likes: 0
+        },
+        {
+          name: 'Oporto Restaurante',
+          description: 'Bacalao, francesinhas y otras recetas de la gastronomía lusa en un coqueto bar decorado con cajas de oporto.',
+          slug: 'oporto',
+          category: 'Mediterráneos',
+          likes: 0
+        }
+      ]
     };
   },
   // Metodos de mi objeto
   methods: {
-    sumLikes () {
-      this.likes++;
-      console.log(`Desde Index. Likes: ${this.likes}`);
+    // Cuneta los likes e index es elemento de la lista
+    sumLikes (index) {
+      this.restaurants[index].likes++;
+      console.log(`Desde Index: ${index}. Likes: ${this.restaurants[index].likes}`);
     },
 
     changeBanner () {
-      this.banner = !this.banner;
+      this.banner = !this.banner; // Lo conttsario :)
     }
   }
 };
