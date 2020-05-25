@@ -22,11 +22,19 @@
     <p>Nombre:</p>
     <input v-model="name">
     <p>Estás escribiendo: {{ name }}</p>
-    <!-- La directiva v-on o simplemente @ nos permite “escuchar” eventos que ocurran dentro nuestro DOM.Como por ejemplo el evento click en un botón. Se programan dentro de methods -->
-    <!-- <button v-on:click="pulsado">Pulsa</button> -->
-    <button class="button is-info" @click="pulsado">
-      Pulsa
-    </button>
+    <!-- llamamos a esta propiedad calculada -->
+    <p>Tu nombre invertido: {{ nameReverser }}</p>
+    <!-- Utilizamos watcher para ir observando variables y disparar acciones si ocurre lo que queremos sobre ella. -->
+    <span v-if="error.length != 0" class="tag is-warning">
+      {{ error }}
+    </span>
+    <section>
+      <!-- La directiva v-on o simplemente @ nos permite “escuchar” eventos que ocurran dentro nuestro DOM.Como por ejemplo el evento click en un botón. Se programan dentro de methods -->
+      <!-- <button v-on:click="pulsado">Pulsa</button> -->
+      <button class="button is-info" @click="pulsado">
+        Pulsa
+      </button>
+    </section>
   </section>
 </template>
 
@@ -39,8 +47,27 @@ export default {
       mensaje: 'datos datos',
       num: 5,
       items: [1, 2, 3, 4, 5],
-      name: ''
+      name: '',
+      error: ''
     };
+  },
+  /* Las computed properties son sencillamente funciones que se comportan dentro de un componente como una propiedad.
+  Esta caracteristica nos ayuda a generar datos reactivos sin tener que estar llamando a funciones o realizando calculos antes de renderizar las propiedades en html. */
+  computed: {
+    nameReverser () {
+      return this.name.split('').reverse().join('');
+    }
+  },
+  /* Son observadores que se activan cuando el valor de una propiedad de modifica. De esta manera podemos actuar de una manera si pasa algo sobre dicha propiedad
+  Para crear un watcher debemos hacerlo mediante la propiedad watcher de vuejs y dentro escribir el observador con el mismo nombre de la propiedad que queremos que escuche. */
+  watch: {
+    name () {
+      if (this.name.length > 5) {
+        this.error = 'Nombre demasiado largo';
+      } else {
+        this.error = '';
+      }
+    }
   },
   // Métodos que ejecuta nuestra lógica (por ejemplo eventos).
   // Es decir, devuelve un objeto de funciones
