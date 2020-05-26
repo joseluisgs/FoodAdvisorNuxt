@@ -1,3 +1,4 @@
+import { db } from './plugins/firebase';
 
 export default {
   mode: 'universal',
@@ -5,7 +6,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'FoodAdvisorNuxt, Descubre Restaurantes con NuxtJS y Firebase',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -51,6 +52,26 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
+    }
+  },
+  // D eesta manera le decimos a Nuxt que genere todas las rutas de antemano.
+  generate: {
+    async routes () {
+      const routesList = [];
+      try {
+        const data = await db.collection('restaurants').get();
+        const docs = await data.docs;
+        docs.map((doc) => {
+          const category = '/' + doc.data().category;
+          routesList.push(category);
+          const route = '/' + doc.data().category + '/' + doc.data().slug;
+          routesList.push(route);
+        });
+        return routesList;
+      } catch (error) {
+        console.log(error);
+        return [];
+      }
     }
   }
 };

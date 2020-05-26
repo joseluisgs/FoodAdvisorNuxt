@@ -49,7 +49,7 @@ import RestaurantCard from '@/components/RestaurantCard';
 import Hero from '@/components/Hero';
 import Banner from '@/components/Banner';
 import Slogan from '@/components/Slogan';
-import api from '@/services/api'; // Nuestra API
+// import api from '@/services/api'; // Nuestra API
 import { db } from '@/plugins/firebase';
 
 export default {
@@ -108,6 +108,7 @@ export default {
   methods: {
     // Cuneta los likes e index es elemento de la lista
     async sumLikes (restaurant) {
+      /*
       const payload = {
         id: restaurant.id,
         data: {
@@ -118,7 +119,17 @@ export default {
       console.log(response);
       if (response.status === 200) {
         restaurant.likes++;
-      }
+      } */
+      // Con google
+      // Actualizamos la BD con el nombre el parámetro obtenido
+      restaurant.likes++;
+      const ref = await db.collection('restaurants').doc(restaurant.id); //
+      const response = ref.update(restaurant);
+      response.then(() => {
+        console.log('Hecho'); // this.$router.back(); // Se actualiza vamos hacia atras.
+      }).catch((error) => {
+        console.log(error);
+      });
     },
 
     changeBanner () {
