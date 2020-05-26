@@ -61,9 +61,11 @@
 </template>
 
 <script>
-import api from '@/services/api';
+// import api from '@/services/api';
+import { db } from '~/plugins/firebase';
+
 export default {
-  async asyncData ({ params }) {
+  /* async asyncData ({ params }) {
     try {
       const payload = {
         slug: params.slug
@@ -73,8 +75,19 @@ export default {
     } catch (error) {
       console.log({ statusCode: 404, message: 'Restaurant not found' });
     }
+  } */
+  async asyncData ({ params }) {
+    const ref = db.collection('restaurants').where('slug', '==', params.slug);
+    let snapshot;
+    try {
+      snapshot = await ref.get();
+    } catch (e) {
+      return { restaurant: {} };
+    }
+    return { restaurant: snapshot.docs.shift().data() };
   }
 };
+
 </script>
 
 <style scoped>
