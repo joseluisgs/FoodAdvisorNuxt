@@ -29,6 +29,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    // Google analytic, solo en el cliente
+    { src: '~plugins/ga.js', mode: 'client' }
   ],
   /*
   ** Nuxt.js dev-modules

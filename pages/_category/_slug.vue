@@ -65,6 +65,7 @@
 import { db } from '~/plugins/firebase';
 
 export default {
+
   /* async asyncData ({ params }) {
     try {
       const payload = {
@@ -85,6 +86,18 @@ export default {
       return { restaurant: {} };
     }
     return { restaurant: snapshot.docs.shift().data() };
+  },
+  // Ejemplo de poner título
+  head () {
+    return {
+      title: 'FoodAdvisorNuxt: ' + this.restaurant.name,
+      meta: [
+        { hid: 'description', name: 'description', content: 'Las mejores ofertas en tu restaurantes con NuxtJS y  Firebase' }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      ]
+    };
   }
 };
 

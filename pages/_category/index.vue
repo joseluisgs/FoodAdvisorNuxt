@@ -74,6 +74,18 @@ export default {
           this.restaurants.push(doc.data());
         });
       });
+  },
+  // Ejemplo de poner título
+  head () {
+    return {
+      title: 'FoodAdvisorNuxt: ' + this.$route.params.category,
+      meta: [
+        { hid: 'description', name: 'description', content: 'Las mejores ofertas en tu restaurantes con NuxtJS y  Firebase' }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      ]
+    };
   }
 };
 </script>
