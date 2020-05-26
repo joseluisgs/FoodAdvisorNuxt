@@ -2,9 +2,37 @@
 
 Web de recomendación de restaurantes con NuxtJS y Firebase y Bulma
 
-### Acerca de
+## Acerca de
 
 Este proyecto tiene como objetivo crear una web app con NuxtJS, Firebase y apoyándose en Bulma como CSS
+
+## Configuraciñon de Firebase
+El el directorio plugis, deberás meter un fichero llamado firebase.js, con la siguiente estructura y datos sacado de dar de alta o crear un proyecto en Firebase
+
+```javascript
+// fichero /plugins/firebase.js
+// Configuración de FIREBASE
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
+if (!firebase.apps.length) {
+  const firebaseConfig = {
+    apiKey: '',
+    authDomain: '',
+    databaseURL: ',
+    projectId: '',
+    storageBucket: '',
+    messagingSenderId: '',
+    appId: ''
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+}
+// Inicializamos la base de datos de firebase
+const db = firebase.firestore();
+export { db };
+
+```
 
 ## Build Setup
 
