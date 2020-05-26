@@ -160,6 +160,7 @@ export default {
         slug: null,
         address: null,
         city: null,
+        likes: 0,
         category: null
       }
     };
