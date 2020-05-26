@@ -56,6 +56,9 @@ $ npm run generate
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
 
+## Variables de entorno
+No olvids meter todas las opciones de configuracion de Firebase como variables de entorno en .env y leerlas. Te recomiendo que veas el mecanismos en [NodeMonRest](https://github.com/joseluisgs/NodeMonRest)
+
 ## Autor
 
 - [José Luis González Sánchez](https://twitter.com/joseluisgonsan) ![Twitter](https://img.shields.io/twitter/follow/joseluisgonsan?style=social)
