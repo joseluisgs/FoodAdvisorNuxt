@@ -13,7 +13,8 @@ El el directorio plugis, deberás meter un fichero llamado firebase.js, con la s
 // fichero /plugins/firebase.js
 // Configuración de FIREBASE
 import firebase from 'firebase/app';
-import 'firebase/firestore';
+import 'firebase/firestore'; // Base de datos
+import 'firebase/firebase-auth'; // Sistema de autenticación
 
 if (!firebase.apps.length) {
   const firebaseConfig = {
@@ -31,7 +32,8 @@ if (!firebase.apps.length) {
 }
 // Inicializamos la base de datos de firebase
 const db = firebase.firestore();
-export { db };
+// Exportamos las variables.
+export { db, firebase };
 
 ```
 

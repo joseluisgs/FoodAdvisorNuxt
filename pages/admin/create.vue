@@ -146,8 +146,9 @@
 <script>
 // Cargamos Firebase DB
 import { db } from '@/plugins/firebase';
-
 export default {
+  // Indicamos que esta protegida por este moddleware
+  middleware: 'auth',
   // Nuestro modelo de datos
   data () {
     return {
