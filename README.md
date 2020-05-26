@@ -19,11 +19,8 @@ if (!firebase.apps.length) {
   const firebaseConfig = {
     apiKey: '',
     authDomain: '',
-<<<<<<< HEAD
     databaseURL: ',
-=======
-    databaseURL: 'https://foodadvisornuxt.firebaseio.com',
->>>>>>> 92284b92908a67f0daa1012f4e8cf29ec9060c79
+    databaseURL: '',
     projectId: '',
     storageBucket: '',
     messagingSenderId: '',
