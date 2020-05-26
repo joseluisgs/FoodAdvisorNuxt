@@ -10,6 +10,14 @@
       </div>
       <!-- Creamos una tabla -->
       <div class="table-container">
+        <!--  Boton de logout -->
+        <button class="button" @click="logOut">
+          Logout
+        </button>
+        <button class="button" @click="createRestaurant">
+          Nuevo
+        </button>
+
         <table class="table is-fullwidth is-bordered">
           <thead>
             <tr>
@@ -50,10 +58,10 @@
 </template>
 <script>
 // Importamos la bd
-import { db } from '@/plugins/firebase';
+import { db, firebase } from '@/plugins/firebase';
 export default {
   // Indicamos que esta protegida por este moddleware
-  middleware: 'auth',
+  // middleware: 'auth',
   // Nuestro modelo de datos
   data () {
     return {
@@ -90,6 +98,15 @@ export default {
       const ref = db.collection('restaurants').doc(id); // Borramos este elemento de la BD
       ref.delete();
       this.getDocuments(); // Una vez borado actualizamos los datos
+    },
+    // Logout
+    logOut () {
+      firebase.auth().signOut();
+      this.$router.push('/');
+    },
+    // Abrir nuevo
+    createRestaurant () {
+      this.$router.push('/admin/create');
     }
   }
 };
