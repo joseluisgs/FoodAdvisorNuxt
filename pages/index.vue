@@ -50,6 +50,7 @@ import Hero from '@/components/Hero';
 import Banner from '@/components/Banner';
 import Slogan from '@/components/Slogan';
 import api from '@/services/api'; // Nuestra API
+import { db } from '@/plugins/firebase';
 
 export default {
   // Retorna una instancia con todos los componente que vamos incorprando
@@ -63,14 +64,14 @@ export default {
     De esta forma nos ahorramos hacerlo en el lado del cliente, como hacemos con created aser una pagina de renderizado en el servidor.
     Es decir lo podemos hacer así la petición porque es una página SSR, en ve de desar la página y que el cliente se desacrgue los datos.
     Lo hace els ervidor y renderiza la página con los datos ya */
-  async asyncData () {
+  /* async asyncData () {
     try {
       const { data } = await api.getRestaurants();
       return { restaurants: data };
     } catch {
       return { restaurants: [] };
     }
-  },
+  }, */
   // Mis datos
   data () {
     return {
@@ -79,6 +80,21 @@ export default {
       // Array de restaurantes estatico. Ya no es necesario al hacer el GET
       restaurants: []
     };
+  },
+  // Voy a hacerlo con Created y Firebase.  Si quiueres hacerlo en el AsyncData por ejemplo mira el _slung.vue que es como más me gusta
+  created () {
+    const response = db.collection('restaurants').get();
+    response.then((snapshot) => {
+      snapshot.forEach((doc) => {
+        const restaurant = {
+          id: doc.id,
+          ...doc.data()
+        };
+        this.restaurants.push(restaurant);
+      });
+    }).catch((error) => {
+      console.log(error);
+    });
   },
   // Una de las mejores formas o momentos para consumir una api es en en el estado created del ciclo de vida del componente.
   // Obtenemos los restaurantes y los asociados a la variable

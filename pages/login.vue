@@ -7,36 +7,47 @@
     </div>
     <div class="columns">
       <div class="column has-text-left">
-        <input class="input" type="text" placeholder="email">
+        <input v-model="email" class="input" type="text" placeholder="email">
       </div>
     </div>
     <div class="columns">
       <div class="column has-text-left">
-        <input class="input" type="text" placeholder="contraseña">
+        <input v-model="password" class="input" type="text" placeholder="contraseña">
       </div>
     </div>
     <div class="columns">
       <div class="column has-text-centered">
-        <!-- Nos indica a que pagina queremos navegar si lo pulsamos el botón. -->
+        <!-- Volvemos -->
         <nuxt-link to="/" class="button is-danger">
           Cancelar
         </nuxt-link>
-        <nuxt-link to="/admin" class="button is-primary">
+        <!--  Vamos al evento onLogin -->
+        <button class="button is-primary" @click="onLogin">
           Login
-        </nuxt-link>
+        </button>
       </div>
     </div>
   </div>
 </template>
-
 <script>
+// Importamos firebase
+import { firebase } from '@/plugins/firebase';
 export default {
-  layout: 'login'
+  layout: 'login',
+  data () {
+    return {
+      email: '',
+      password: ''
+    };
+  },
+  methods: {
+    // Nos conectamos al servicio de identificación
+    onLogin () {
+      const response = firebase.auth().signInWithEmailAndPassword(this.email, this.password);
+      response.then((data) => {
+        this.$router.push('admin'); // Vamos a la ruta /admin
+      });
+    }
+  }
 };
 </script>
-
-<style>
-.box-login {
-  margin-top: 30px;
-}
-</style>
