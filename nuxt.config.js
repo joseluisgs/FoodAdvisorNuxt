@@ -1,4 +1,4 @@
-import { db } from './plugins/firebase';
+// import { db } from './plugins/firebase';
 
 export default {
   mode: 'universal',
@@ -55,23 +55,23 @@ export default {
     }
   },
   // D eesta manera le decimos a Nuxt que genere todas las rutas de antemano.
-  generate: {
-    async routes () {
-      const routesList = [];
-      try {
-        const data = await db.collection('restaurants').get();
-        const docs = await data.docs;
-        docs.map((doc) => {
-          const category = '/' + doc.data().category;
-          routesList.push(category);
-          const route = '/' + doc.data().category + '/' + doc.data().slug;
-          routesList.push(route);
-        });
-        return routesList;
-      } catch (error) {
-        console.log(error);
-        return [];
-      }
-    }
-  }
+  // generate: {
+  //   async routes () {
+  //     const routesList = [];
+  //     try {
+  //       const data = await db.collection('restaurants').get();
+  //       const docs = await data.docs;
+  //       docs.map((doc) => {
+  //         const category = '/' + doc.data().category;
+  //         routesList.push(category);
+  //         const route = '/' + doc.data().category + '/' + doc.data().slug;
+  //         routesList.push(route);
+  //       });
+  //       return routesList;
+  //     } catch (error) {
+  //       console.log(error);
+  //       return [];
+  //     }
+  //   }
+  // }
 };
