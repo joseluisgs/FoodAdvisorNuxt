@@ -33,9 +33,13 @@
               </td>
               <td>
                 <!-- añadimos el botón para editar que redirecciona al elemento con ese id -->
-                <nuxt-link class="button" :to="item.id">
+                <nuxt-link class="button" :to="/admin/+item.id">
                   Edit
                 </nuxt-link>
+                <!-- añadimos el botón para eliminar que se dipsra con este evento, con el id del restaurante -->
+                <button class="button is-danger" @click="deleteDocument(item.id)">
+                  Delete
+                </button>
               </td>
             </tr>
           </tbody>
@@ -56,21 +60,35 @@ export default {
   },
   // En el estado created de nuestro componente consultamos la BD firebase
   created () {
-    // Hacemos el get
-    const response = db.collection('restaurants').get();
-    response
-      .then((snapshot) => {
-        snapshot.forEach((doc) => {
-          const restaurant = {
-            id: doc.id,
-            ...doc.data() // descompone el documento que nos llega en sus propiedades y las enlaza en el nuevo objeto que estamos creado
-          };
-          this.restaurants.push(restaurant); // Lo metemos en nuestra variable
+    // Nos traemos la lista de oducmentos
+    this.getDocuments();
+  },
+  // Lógica
+  methods: {
+    // Nos traemos la lista de oducmentos
+    getDocuments () {
+      this.restaurants = []; // Lo ponemos a nulo porque lo iniciamos con lo que hay en la BD.
+      const response = db.collection('restaurants').get();
+      response
+        .then((snapshot) => {
+          snapshot.forEach((doc) => {
+            const restaurant = {
+              id: doc.id,
+              ...doc.data() // descompone el documento que nos llega en sus propiedades y las enlaza en el nuevo objeto que estamos creado
+            };
+            this.restaurants.push(restaurant); // Lo metemos en nuestra variable
+          });
+        })
+        .catch((error) => {
+          console.log(error);
         });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    },
+    // Evento del botón borrar
+    deleteDocument (id) {
+      const ref = db.collection('restaurants').doc(id); // Borramos este elemento de la BD
+      ref.delete();
+      this.getDocuments(); // Una vez borado actualizamos los datos
+    }
   }
 };
 </script>

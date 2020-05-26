@@ -1,11 +1,12 @@
 <template>
-  <div class="section">
+  <!-- importante el if para que no rencerice hasta que no tenga el objeto -->
+  <div v-if="restaurant" class="section">
     <div class="columns">
       <div class="column is-6 is-offset-3">
         <div class="columns">
           <div class="column">
             <h2 class="title is-2">
-              New Restaurant
+              Edit Restaurant
             </h2>
           </div>
         </div>
@@ -25,14 +26,12 @@
             <div class="field">
               <label class="label">Slug</label>
               <div class="control">
-                <!-- El slug se calcula con una proppiedad calculada, lo "bindeamos" a placeholder -->
                 <input class="input" type="text" :placeholder="slug" disabled>
               </div>
             </div>
             <div class="field">
               <label class="label">Image</label>
               <div class="control">
-                <!-- La imagen va a ser una URL, así nos ahorramos subirla -->
                 <input
                   v-model="restaurant.image"
                   class="input"
@@ -118,7 +117,7 @@
             </div>
             <div class="field">
               <div class="control has-text-centered">
-                <!-- Volvemos al router Back -->
+                <!-- Volvemos atrás -->
                 <button
                   class="button is-danger"
                   type="button"
@@ -130,9 +129,9 @@
                 <button
                   class="button is-link"
                   type="button"
-                  @click.prevent="onSubmitButton"
+                  @click.prevent="onUpdate"
                 >
-                  Save
+                  Update
                 </button>
               </div>
             </div>
@@ -144,54 +143,37 @@
 </template>
 
 <script>
-// Cargamos Firebase DB
+// Importamos firebase
 import { db } from '@/plugins/firebase';
-
 export default {
   // Nuestro modelo de datos
   data () {
     return {
-      restaurant: {
-        name: null,
-        description: null,
-        image: null,
-        text: null,
-        slug: null,
-        address: null,
-        city: null,
-        category: null
-      }
+      restaurant: null
     };
   },
-  // Propiedades computadas
-  computed: {
-    // Slug, quita los espacios y pone guiones.
-    slug () {
-      if (this.restaurant.name) {
-        return this.restaurant.name.replace(/ /g, '-');
-      } else {
-        return null;
+  // En el estado al crear buscamos el restaurantes con el id que tenemos (el que tiene de paraámetros la ruta)
+  created () {
+    const response = db.collection('restaurants').doc(this.$route.params.id).get(); // Pregunta get
+    // Si existe, el restaurante es el documento obtenido
+    response.then((doc) => {
+      if (doc.exists) {
+        this.restaurant = doc.data();
       }
-    }
+    });
   },
-  // Observador slug, detecta cada cambio en slug (computado y actualiza el campu slug de nuestro modelo restaurante
-  watch: {
-    slug () {
-      this.restaurant.slug = this.slug;
-    }
-  },
-  // Métodos
+  // Cad vez que pulsemos actualizar (evento)
   methods: {
-    // Evento de submint
-    onSubmitButton () {
-      // Añadimos a la BD en la colección restaurantes.
-      const response = db.collection('restaurants').add(this.restaurant);
+    onUpdate () {
+      // Actualizamos la BD con el nombre el parámetro obtenido
+      const ref = db.collection('restaurants').doc(this.$route.params.id);
+      const response = ref.update(this.restaurant);
       response.then(() => {
-        this.$router.back(); // Si todo va bien volvemos.
+        this.$router.back(); // Se actualiza vamos hacia atras.
+      }).catch((error) => {
+        console.log(error);
       });
     }
   }
 };
 </script>
-
-<style></style>
